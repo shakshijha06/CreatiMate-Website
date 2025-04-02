@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreatiMate - AI Marketing Redefined</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        :root {
+            --peach: #ffd6c8;
+            --white: #ffffff;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Merriweather', serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--peach), var(--white));
+            background-attachment: fixed;
+            font-family: 'Merriweather', serif;
+        }
+        
+        .section {
+            padding: 100px 0;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255,214,200,0.8), rgba(255,255,255,0.8));
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Text styling */
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            text-decoration: underline;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 2.2rem;
+        }
+        
+        /* Special sections with center alignment */
+        #team, #vision, #mission {
+            text-align: center;
+        }
+        
+        #team p, #vision p, #mission p {
+            text-align: center;
+        }
+        
+        .hero-section {
+            height: 100vh;
+            background: url('https://source.unsplash.com/1600x900/?technology,marketing') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 20px;
+            max-width: 800px;
+        }
+        
+        .animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-in-out;
+        }
+        
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .btn-custom {
+            background-color: #ff5722;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            color: white;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Team section styles */
+        .team-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .team-member {
+            width: 30%;
+            min-width: 300px;
+            margin: 15px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .team-member h3 {
+            font-size: 1.8rem;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+        
+        .team-member p {
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .team-member:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .team-member.zoomed {
+            transform: scale(1.2);
+            z-index: 10;
+        }
+        
+        .team-member.dimmed {
+            opacity: 0.5;
+        }
+        
+        .team-member.center {
+            order: 2;
+        }
+        
+        .team-member.left {
+            order: 1;
+            text-align: center;
+        }
+        
+        .team-member.right {
+            order: 3;
+            text-align: center;
+        }
+        
+        /* Background transition effect */
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, rgba(255,214,200,0.6), rgba(255,255,255,0.6));
+        }
+        
+        /* List styling */
+        ul {
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            text-align: left;
+        }
+        
+        li {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        /* Form transition */
+        .form-transition {
+            transition: all 0.5s ease-in-out;
+        }
+        
+        /* Social icons */
+        .social-icons a {
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">CreatiMate</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#intro">Intro</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#why">Why CreatiMate?</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#value">Value Proposition</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#vision">Vision</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mission">Our Mission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Meet The Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cta">Get Started</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.instagram.com/creatimate.marketing" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mailto:team.creatimate@gmail.com">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="animate">CreatiMate - AI Marketing Redefined</h1>
+            <a href="#intro" class="btn btn-custom animate">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section id="intro" class="section animate">
+        <div class="container">
+            <p>“Running a small business isn't just a job—it's a whirlwind. One moment, you're closing a sale, the next, you're handling customer queries, managing inventory, and maybe even balancing the books. And then there's marketing—arguably the most crucial yet most overwhelming part. You know you need eye-catching designs, engaging content, and a strong brand presence to stand out, but let's be real:</p>
+            <ul>
+                <li>👉 Who has the time? Between running your business and keeping customers happy, squeezing in hours for content creation feels impossible.</li>
+                <li>👉 It's expensive. Hiring a designer, social media manager, or marketing agency isn't exactly pocket-friendly—especially for small businesses trying to grow.</li>
+                <li>👉 It's complicated. There are way too many tools out there—Photoshop, Canva, Instagram Ads, email marketing, SEO—the list goes on. Should you post reels? Run ads? Start a newsletter? It feels like a never-ending puzzle.</li>
+                <li>👉 Inconsistent branding slows you down. Without a clear, professional brand identity, businesses struggle to build trust and stand out—leading to fewer customers and lower sales.</li>
+            </ul>
+            <p>The truth? Small businesses deserve marketing that works—without the stress, confusion, or hefty price tag. And that's exactly where CreatiMate comes in. 🚀</p>
+            <h3>Meet CreatiMate – The Secret Weapon Small Businesses Have Been Waiting For! 🚀🎨</h3>
+            <p>For too long, small businesses have struggled with marketing—wasting time, burning money, and juggling complicated tools just to stay visible. But not anymore.</p>
+            <p>CreatiMate is here to change the game. Imagine a tool so powerful that it handles your designs, content, and branding while you focus on growing your business. No designers, no expensive agencies—just effortless, professional marketing at your fingertips.</p>
+            <p>Tired of blending into the crowd? It's time to stand out. Welcome to CreatiMate.</p>
+        </div>
+    </section>
+
+    <!-- Why CreatiMate Section -->
+    <section id="why" class="section animate">
+        <div class="container">
+            <h2>Why CreatiMate?</h2>
+            <p>"Imagine marketing that feels effortless—where stunning designs, engaging content, and brand consistency happen without stress. That's CreatiMate.</p>
+            <ul>
+                <li>💡 No more marketing headaches – Say goodbye to confusing tools, expensive designers, and never-ending content struggles. CreatiMate does the heavy lifting for you!</li>
+                <li>⏳ Save time, grow faster – You run your business, we'll handle the marketing. CreatiMate's AI-powered automation delivers professional-quality branding and promotional content in minutes, not days.</li>
+                <li>🎨 Creativity without the complexity – You don't need to be a designer to create eye-catching visuals. Our smart templates and easy-to-use platform bring out the best in your brand—without a steep learning curve.</li>
+                <li>💰 Budget-friendly marketing that works – No overpriced agencies. No costly subscriptions. Just high-quality marketing solutions made affordable for small businesses.</li>
+                <li>🚀 Stand out, get noticed, and grow – In today's crowded market, visibility is everything. CreatiMate ensures your brand looks polished, professional, and ready to attract customers effortlessly.</li>
+            </ul>
+            <p>Marketing shouldn't be stressful. With CreatiMate, it's simple, effective, and—dare we say it—fun! 🎉 Ready to experience the magic?"</p>
+        </div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section id="value" class="section animate">
+        <div class="container">
+            <h2>Unique Value Proposition</h2>
+            <p>We provide AI-driven automation that designs, optimizes, and enhances marketing materials effortlessly.</p>
+            <p>CreatiMate isn't just another design tool—it's an AI-powered marketing companion built exclusively for small businesses. Our mission is to eliminate the struggles of branding and marketing by offering:</p>
+            <ul>
+                <li>✅ Smart, AI-driven designs – Get high-quality, personalized marketing materials in just a few clicks.</li>
+                <li>✅ Time-saving automation – No need to spend hours designing—CreatiMate handles it for you.</li>
+                <li>✅ Professional branding made easy – Maintain a consistent, professional brand image across all platforms.</li>
+                <li>✅ Cost-effective solutions – Get agency-level results without the high price tag.</li>
+            </ul>
+            <p>CreatiMate is where simplicity meets creativity—empowering businesses to market smarter, not harder."</p>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="section animate">
+        <div class="container">
+            <h2>Our Vision</h2>
+            <p>At CreatiMate, we envision a world where small businesses no longer struggle with marketing. We believe that great branding and professional content shouldn't be a luxury reserved for big corporations with massive budgets. Every small business, no matter its size, deserves the tools to stand out, attract customers, and grow effortlessly.</p>
+            <p>Our vision is to bridge the gap between creativity and accessibility—making high-quality marketing available to entrepreneurs, startups, and business owners who don't have the time, money, or expertise to navigate complex design tools. By harnessing the power of AI and automation, we aim to revolutionize how businesses create, market, and brand themselves—without the stress, high costs, or steep learning curve.</p>
+            <p>We see a future where marketing is no longer a burden but an exciting part of every entrepreneur's journey. With CreatiMate, that future starts now. 🚀</p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="section animate">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <p>Our mission is simple: To make marketing easy, affordable, and effective for small businesses.</p>
+            <p>We understand the struggles entrepreneurs face—juggling multiple roles, lacking design expertise, and struggling to create consistent branding. That's why CreatiMate exists—to provide a seamless, AI-powered solution that handles the hard part for you.</p>
+            <p>No expensive designers. Our platform delivers stunning marketing materials in minutes, without the need for professional help.</p>
+            <p>No wasted time. Business owners can focus on what they do best while CreatiMate takes care of branding, social media content, and promotional designs.</p>
+            <p>No creative barriers. Whether you're a beginner or an expert, our easy-to-use tools ensure that anyone can create professional-quality designs effortlessly.</p>
+            <p>By democratizing marketing and making it more accessible, we aim to empower businesses to tell their story, connect with customers, and grow like never before.</p>
+            <p>CreatiMate isn't just a tool—it's your business's creative partner.</p>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section animate">
+        <div class="container">
+            <h2>Meet the Team</h2>
+            <p>Driven by passion, led by innovation.</p>
+            
+            <div class="team-container">
+                <div class="team-member left">
+                    <h3>Dona Samantha</h3>
+                    <p>Co-Founder & Marketing & Communications Lead</p>
+                </div>
+                
+                <div class="team-member center">
+                    <h3>Shakshi Jha</h3>
+                    <p>Co-Founder & Strategist</p>
+                </div>
+                
+                <div class="team-member right">
+                    <h3>Priya Jha</h3>
+                    <p>Co-Founder & Operational Services</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="section animate">
+        <div class="container">
+            <h2>What are you waiting for??</h2>
+            <h3>Marketing Magic—Made Just for You.</h3>
+            <p>You've seen big brands do it effortlessly. Now, it's your turn.</p>
+            <p>No stress, no crazy costs—just smart, stunning marketing at your fingertips.</p>
+            <p>✨ Early access = First-mover advantage. Be among the first to experience the future of effortless marketing.</p>
+            <p>💡 Your business deserves better. And with CreatiMate, better is just a click away.</p>
+            <p>👇 Join the waitlist now!</p>
+            
+            <div class="cta-buttons">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxmnG7k4WLU9303Fiz4_zx4NK9hYHWLqJSXzoiFrZA52xe9Q/viewform?usp=dialog" class="btn btn-custom" id="waitlist-btn">Join the Waitlist</a>
+            </div>
+            
+            <div class="social-icons" style="margin-top: 20px;">
+                <a href="mailto:team.creatimate@gmail.com" class="me-3">
+                    <i class="fas fa-envelope fa-2x" style="color: #ff5722;"></i>
+                </a>
+                <a href="https://www.instagram.com/creatimate.marketing" target="_blank">
+                    <i class="fab fa-instagram fa-2x" style="color: #ff5722;"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            // Animation trigger on scroll
+            function checkAnimation() {
+                $('.animate').each(function() {
+                    var position = $(this).offset().top;
+                    var scroll = $(window).scrollTop() + $(window).height();
+                    
+                    if (scroll > position + 100) {
+                        $(this).addClass('show');
+                    }
+                });
+            }
+            
+            // Run on load and scroll
+            checkAnimation();
+            $(window).scroll(function() {
+                checkAnimation();
+                
+                // Background gradient effect
+                var scrollPosition = $(this).scrollTop();
+                var opacity = 1 - (scrollPosition / 1000);
+                opacity = opacity < 0.6 ? 0.6 : opacity;
+                $('body').css('background', `linear-gradient(135deg, rgba(255,214,200,${opacity}), rgba(255,255,255,${opacity}))`);
+            });
+            
+            // Team member zoom effect
+            $('.team-member').click(function() {
+                $(this).toggleClass('zoomed');
+                $('.team-member').not(this).toggleClass('dimmed');
+            });
+            
+            // Smooth form transition
+            $('#waitlist-btn').click(function(e) {
+                e.preventDefault();
+                $('html, body').addClass('form-transition');
+                $('html, body').css({
+                    'opacity': '0',
+                    'transition': 'opacity 0.5s ease-in-out'
+                });
+                
+                setTimeout(function() {
+                    window.location.href = $('#waitlist-btn').attr('href');
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
