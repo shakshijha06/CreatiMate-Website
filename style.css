@@ -1,0 +1,222 @@
+:root {
+    --lavender: #f3e5f5;
+    --light-purple: #d1c4e9;
+    --accent: #7e57c2;  /* soft purple for buttons or highlights */
+    --dark: #2c003e;     /* dark violet shade for text or strong contrast */
+    --white: #ffffff;
+--gentle-glow: #f0f4ff
+}
+
+ body {
+    font-family: 'Merriweather', serif;
+    background: linear-gradient(to bottom, #f3e5f5, #d1c4e9, #b39ddb, #9575cd, #512da8);
+    color: var(--dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+
+/* ===== ENHANCED ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes underline {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .navbar-brand:hover {
+            transform: translateX(5px);
+        }
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.85);
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            opacity: 0;
+            animation: fadeIn 0.8s forwards;
+            animation-delay: 0.2s;
+        }
+
+        /* ===== HEADINGS ===== */
+        h1, h2, h3 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1 { 
+            font-size: 3rem;
+            animation-delay: 0.3s !important;
+        }
+        h2 { 
+            font-size: 2.5rem;
+        }
+        h3 { 
+            font-size: 2rem; 
+        }
+        
+        /* Underline Animation */
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 5px;
+            background: var(--accent);
+            animation: underline 1s forwards;
+            animation-delay: 0.8s;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            height: 100vh;
+            background: url('https://source.unsplash.com/1600x900/?technology,marketing') center/cover no-repeat;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+            transform: scale(0.95);
+            transition: transform 0.5s;
+        }
+        .hero-section:hover .hero-content {
+            transform: scale(1);
+        }
+
+        /* ===== VIDEO SECTION ===== */
+        .video-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.2s;
+        }
+        .video-container:hover {
+            transform: perspective(1000px) rotateY(0deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+
+        /* ===== TEAM SECTION ===== */
+        .team-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .team-member {
+            background: gentle-glow;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+        .team-member:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .team-member h3 {
+            color: var(--accent);
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #ff8a65);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(255,87,34,0.3);
+            transform: scale(0.98);
+            transition: all 0.5s;
+        }
+        .cta-box:hover {
+            transform: scale(1);
+            box-shadow: 0 15px 40px rgba(255,87,34,0.4);
+        }
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 10px;
+            color: var(--accent);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        .social-icons a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .section {
+                padding: 70px 0;
+            }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .team-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        } 
